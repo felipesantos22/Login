@@ -1,6 +1,6 @@
 interface userDTO {
     email: string,
-    password: number
+    password: string
 }
 
 export default userDTO;

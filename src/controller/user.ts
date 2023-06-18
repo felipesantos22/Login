@@ -1,15 +1,11 @@
 import { Request, Response } from "express";
 import user from "../service/user";
-import { hash } from "bcrypt";
+import { hash, hashSync } from "bcrypt";
 
 async function createController(req: Request, res: Response) {
     const { email, password } = req.body;
-    // const passwordHash = await hash(password, 8);
-    // const userTest = {
-    //     email,
-    //     password: passwordHash
-    // }
-    const create = await user.createService({ email, password });
+    const passwordHash = hashSync(password, 2);
+    const create = await user.createService({ email, password: passwordHash });
     return res.json(create);
 }
 
